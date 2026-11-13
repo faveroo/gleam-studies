@@ -1,0 +1,26 @@
+
+{
+  "name": "Gleam Studies",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "overrideCommand": true,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Gleam.gleam"
+      ],
+      "settings": {
+        "[gleam]": {
+          "editor.defaultFormatter": "Gleam.gleam",
+          "editor.formatOnSave": true
+        },
+        "editor.tabSize": 2,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true
+      }
+    }
+  },
+  "postCreateCommand": "if [ -f gleam.toml ]; then gleam deps download; fi"
+}
