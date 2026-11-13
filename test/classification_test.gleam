@@ -1,4 +1,4 @@
-import exercises/classification
+import exercises/classification.{Negative, Positive, Zero}
 import gleam/list
 
 pub fn positive_test() {
@@ -55,4 +55,24 @@ pub fn classification_count_matches_length_test() {
       numbers,
     ))
     == list.length(numbers)
+}
+
+pub fn parse_positive_test() {
+  assert classification.parse_and_classify("42") == Ok(Positive)
+}
+
+pub fn parse_negative_test() {
+  assert classification.parse_and_classify("-10") == Ok(Negative)
+}
+
+pub fn parse_zero_test() {
+  assert classification.parse_and_classify("0") == Ok(Zero)
+}
+
+pub fn parse_invalid_test() {
+  assert classification.parse_and_classify("hello") == Error(Nil)
+}
+
+pub fn parse_empty_test() {
+  assert classification.parse_and_classify("") == Error(Nil)
 }

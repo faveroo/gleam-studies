@@ -11,6 +11,17 @@ pub type Classification {
   Zero
 }
 
+pub fn parse_and_classify(input: String) -> Result(Classification, Nil) {
+  // int.parse(input)
+  // |> result.map(classify)
+
+  case int.parse(input) {
+    Error(_) -> Error(Nil)
+
+    Ok(number) -> Ok(classify(number))
+  }
+}
+
 pub fn classify(number: Int) -> Classification {
   case number {
     value if value > 0 -> Positive
