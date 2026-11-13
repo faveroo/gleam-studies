@@ -15,3 +15,7 @@ pub fn negative_test() {
 pub fn zero_test() {
   assert classification.classify(0) == classification.Zero
 }
+
+pub fn classify_list_test() {
+  assert classification.classify_all([10, -5, 0]) == [classification.Positive, classification.Negative, classification.Zero]
+}
