@@ -1,5 +1,6 @@
 import exercises/classification.{Negative, Positive, Zero}
 import gleam/list
+import gleam/option.{None, Some}
 
 pub fn positive_test() {
   assert classification.classify(10) == classification.Positive
@@ -77,4 +78,22 @@ pub fn parse_invalid_test() {
 pub fn parse_empty_test() {
   assert classification.parse_and_classify("")
     == Error(classification.InvalidNumber(""))
+}
+
+pub fn classify_optional_positive_test() {
+  assert classification.classify_optional(Some(10))
+    == Some(classification.Positive)
+}
+
+pub fn classify_optional_negative_test() {
+  assert classification.classify_optional(Some(-5))
+    == Some(classification.Negative)
+}
+
+pub fn classify_optional_zero_test() {
+  assert classification.classify_optional(Some(0)) == Some(classification.Zero)
+}
+
+pub fn classify_optional_none_test() {
+  assert classification.classify_optional(None) == None
 }
