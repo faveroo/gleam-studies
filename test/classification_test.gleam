@@ -70,9 +70,11 @@ pub fn parse_zero_test() {
 }
 
 pub fn parse_invalid_test() {
-  assert classification.parse_and_classify("hello") == Error(Nil)
+  assert classification.parse_and_classify("hello")
+    == Error(classification.InvalidNumber("hello"))
 }
 
 pub fn parse_empty_test() {
-  assert classification.parse_and_classify("") == Error(Nil)
+  assert classification.parse_and_classify("")
+    == Error(classification.InvalidNumber(""))
 }

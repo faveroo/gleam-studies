@@ -11,12 +11,16 @@ pub type Classification {
   Zero
 }
 
-pub fn parse_and_classify(input: String) -> Result(Classification, Nil) {
+pub type ParseError {
+  InvalidNumber(input: String)
+}
+
+pub fn parse_and_classify(input: String) -> Result(Classification, ParseError) {
   // int.parse(input)
   // |> result.map(classify)
 
   case int.parse(input) {
-    Error(_) -> Error(Nil)
+    Error(_) -> Error(InvalidNumber(input))
 
     Ok(number) -> Ok(classify(number))
   }
