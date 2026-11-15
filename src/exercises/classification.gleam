@@ -48,6 +48,12 @@ pub fn classify_optional(
   }
 }
 
+pub fn classify_optional_map(
+  number: option.Option(Int),
+) -> option.Option(Classification) {
+  option.map(number, classify)
+}
+
 pub fn count_classifications(numbers: List(Int)) -> ClassificationCount {
   let initial = ClassificationCount(positive: 0, negative: 0, zero: 0)
 

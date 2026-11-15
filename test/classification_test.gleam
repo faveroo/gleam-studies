@@ -97,3 +97,13 @@ pub fn classify_optional_zero_test() {
 pub fn classify_optional_none_test() {
   assert classification.classify_optional(None) == None
 }
+
+pub fn classify_optional_map_test() {
+  assert classification.classify_optional_map(option.Some(10))
+    == option.Some(classification.Positive)
+
+  assert classification.classify_optional_map(option.Some(-5))
+    == option.Some(classification.Negative)
+
+  assert classification.classify_optional_map(option.None) == option.None
+}
