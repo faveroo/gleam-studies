@@ -9,6 +9,10 @@ pub fn find_missing_user_test() {
   assert find_user(999, True) == Ok(None)
 }
 
+pub fn missing_user_with_unavailable_database_test() {
+  assert find_user(999, False) == Error(ConnectionFailed)
+}
+
 pub fn database_unavailable_test() {
   assert find_user(1, False) == Error(ConnectionFailed)
 }
