@@ -18,3 +18,13 @@ pub fn find_user(
     True, _ -> Ok(None)
   }
 }
+
+pub fn describe_user_lookup(
+  result: Result(Option(User), DatabaseError)
+) -> String {
+  case result {
+    Error(ConnectionFailed) -> "Database unavailable"
+    Ok(None) -> "User not found"
+    Ok(Some(User(name:, ..))) -> "User found: " <> name
+  }
+}
