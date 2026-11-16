@@ -54,6 +54,14 @@ pub fn classify_optional_map(
   option.map(number, classify)
 }
 
+pub fn classify_positive_optional(
+  number: option.Option(Int),
+) -> option.Option(Classification) {
+  number
+  |> option.then(positive_only)
+  |> option.map(classify)
+}
+
 pub fn count_classifications(numbers: List(Int)) -> ClassificationCount {
   let initial = ClassificationCount(positive: 0, negative: 0, zero: 0)
 
@@ -70,6 +78,15 @@ pub fn total_count(counts: ClassificationCount) -> Int {
   let ClassificationCount(positive:, negative:, zero:) = counts
 
   positive + negative + zero
+}
+
+fn positive_only(
+  number: Int,
+) -> option.Option(Int) {
+  case number {
+    n if n > 0 -> option.Some(n)
+    _ -> option.None
+  }
 }
 
 fn classify_all_loop(
