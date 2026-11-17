@@ -19,3 +19,16 @@ pub fn negative_user_id_test() {
 pub fn empty_user_id_test() {
   assert user_id.validate_user_id("") == Error(user_id.InvalidInteger)
 }
+
+pub fn valid_user_id_with_use_test() {
+  assert user_id.validate_user_id_with_use("42") == Ok(42)
+}
+
+pub fn invalid_integer_with_use_test() {
+  assert user_id.validate_user_id_with_use("abc")
+    == Error(user_id.InvalidInteger)
+}
+
+pub fn non_positive_id_with_use_test() {
+  assert user_id.validate_user_id_with_use("0") == Error(user_id.NonPositiveId)
+}

@@ -22,3 +22,8 @@ pub fn validate_user_id(input: String) -> Result(Int, UserIdError) {
   |> parse_id
   |> result.try(ensure_positive_id)
 }
+
+pub fn validate_user_id_with_use(input: String) -> Result(Int, UserIdError) {
+  use id <- result.try(parse_id(input))
+  ensure_positive_id(id)
+}
