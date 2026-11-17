@@ -1,3 +1,4 @@
+import gleam/result
 import gleam/option.{type Option, None, Some}
 
 pub type User {
@@ -17,6 +18,16 @@ pub fn find_user(
     True, 1 -> Ok(Some(User(1, "Alice")))
     True, _ -> Ok(None)
   }
+}
+
+pub fn find_user_name(
+  id: Int,
+  database_available: Bool,
+) -> Result(Option(String), DatabaseError) {
+  find_user(id, database_available)
+  |> result.map(fn(maybe_user) {
+    option.map(maybe_user, fn(user) { user.name })
+  })
 }
 
 pub fn describe_user_lookup(
